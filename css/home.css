@@ -1,0 +1,33 @@
+#gamecontainer{
+    background-color: black;
+    border: solid;
+    border-radius: 30px;
+    border-color: blue;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+}
+#score{
+    margin: 10px;
+    text-align: center;
+    color: white;
+    border: solid;
+    border-color: blue;
+    border-radius: 10px;
+}
+#gameboard{
+    margin-left: 10px;
+    margin-right: 10px;
+    
+    width:420px;
+	height:465px;
+	background-color: gray;
+}
+#gamefooter{
+    margin: 10px;
+    text-align: center;
+    color: white;
+    border: solid;
+    border-color: blue;
+    border-radius: 10px;
+}
