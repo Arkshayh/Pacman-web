@@ -1,11 +1,12 @@
 #gamecontainer{
+    width: 450px;
     background-color: black;
     border: solid;
     border-radius: 30px;
     border-color: blue;
     margin-left: auto;
     margin-right: auto;
-    display: inline-block;
+    display: block;
 }
 #score{
     margin: 10px;
@@ -16,12 +17,12 @@
     border-radius: 10px;
 }
 #gameboard{
-    margin-left: 10px;
-    margin-right: 10px;
-    
+    margin-left: auto;
+    margin-right: auto;
     width:420px;
 	height:465px;
 	background-color: gray;
+    position: relative;
 }
 #gamefooter{
     margin: 10px;
@@ -31,3 +32,40 @@
     border-color: blue;
     border-radius: 10px;
 }
+.wall{
+    width: 15px;
+    height: 15px;
+    background-color: rgb(79, 79, 216);
+    position: absolute;
+}
+.pacdot{
+    width: 15px;
+    height: 15px;
+    background-color: rgb(199, 199, 86);
+    position: absolute;
+}
+.empty{
+    width: 15px;
+    height: 15px;
+    background-color: black;
+    position: absolute;
+}
+.energizer{
+    width: 15px;
+    height: 15px;
+    background-color: rgb(187, 36, 36);
+    position: absolute;
+}
+.pacRespawn{
+    width: 15px;
+    height: 15px;
+    background-color: black;
+    position: absolute;
+}
+.ghostRespawn{
+    width: 15px;
+    height: 15px;
+    background-color: black;
+    position: absolute;
+}
+
