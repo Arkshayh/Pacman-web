@@ -43,3 +43,34 @@ const RAW_MAZE = {
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     ],
 }
+
+class Maze{
+    constructor(RawMaze){
+        let wall = new Layer(RawMaze.length, RawMaze[0].length);
+        let gum = new Layer(RawMaze.length, RawMaze[0].length);
+
+        for(let ligne = 0; ligne < RawMaze.length; ligne++){
+            for(let colonne = 0; colonne < RawMaze[0].length; colonne++){
+                switch(RawMaze[ligne][colonne]) {
+                    case 0:
+                        break;
+                    case 1:
+                        wall.setTile(new Position(ligne, colonne), new Tile(RawMaze[ligne][colonne]));
+                        break;
+                    case 2:
+                        gum.setTile(new Position(ligne, colonne), new Tile(RawMaze[ligne][colonne]));
+                        break;
+                    case 3:
+                        gum.setTile(new Position(ligne, colonne), new Tile(RawMaze[ligne][colonne]));
+                        break;
+                    case 4:
+                        break; 
+                    case 5:
+                        break;
+                }
+            }
+        }  
+        this.wallLayer = wall;
+        this.gumLayer = gum;     
+    }
+}
