@@ -73,4 +73,18 @@ class Maze{
         this.wallLayer = wall;
         this.gumLayer = gum;     
     }
+
+    getWallLayerTile(position){
+        if(this.wallLayer.contains(position) == false){
+            throw 'error position';
+        }
+        return this.wallLayer.getTile(position);
+    }
+
+    getDotLayerTile(position){
+        if(this.gumLayer.contains(position) == false){
+            throw 'error position';
+        }
+        return this.gumLayer.getTile(position);
+    }
 }
