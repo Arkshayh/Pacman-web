@@ -87,4 +87,12 @@ class Maze{
         }
         return this.gumLayer.getTile(position);
     }
+
+    getLayerRowSize(){
+        return this.wallLayer.getNbRows();
+    }
+    getLayerColumnSize(){
+        return this.wallLayer.getNbColumns();
+    }
+
 }

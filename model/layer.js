@@ -1,5 +1,7 @@
 class Layer{
     constructor(nbRows, nbColumns){
+        this.rows = nbRows;
+        this.columns = nbColumns;
         this.layer = Array(nbRows).fill().map(() => Array(nbColumns));
     }
 
@@ -32,6 +34,14 @@ class Layer{
             return false;
         }
         return true;
+    }
+
+    getNbRows(){
+        return this.rows;
+    }
+
+    getNbColumns(){
+        return this.columns;s
     }
     
 }
