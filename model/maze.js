@@ -122,4 +122,5 @@ class Maze{
         }
         return this.getDotLayerTile(pos);
     }
+   
 }

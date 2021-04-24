@@ -41,7 +41,7 @@ class Layer{
     }
 
     getNbColumns(){
-        return this.columns;s
+        return this.columns;
     }
     
 }
