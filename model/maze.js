@@ -48,6 +48,7 @@ class Maze{
     constructor(RawMaze){
         let wall = new Layer(RawMaze.length, RawMaze[0].length);
         let gum = new Layer(RawMaze.length, RawMaze[0].length);
+        let pacSpawn;
 
         for(let ligne = 0; ligne < RawMaze.length; ligne++){
             for(let colonne = 0; colonne < RawMaze[0].length; colonne++){
@@ -64,6 +65,7 @@ class Maze{
                         gum.setTile(new Position(ligne, colonne), new Tile(RawMaze[ligne][colonne]));
                         break;
                     case 4:
+                        pacSpawn = new Position(ligne, colonne);
                         break; 
                     case 5:
                         break;
@@ -72,6 +74,11 @@ class Maze{
         }  
         this.wallLayer = wall;
         this.gumLayer = gum;     
+        this.pacmanSpawn = pacSpawn;
+    }
+
+    getPacmanSpawn(){
+        return this.pacmanSpawn;
     }
 
     getWallLayerTile(position){
@@ -95,4 +102,24 @@ class Maze{
         return this.wallLayer.getNbColumns();
     }
 
+    canWalkOn(pos){
+        if(this.wallLayer.contains(pos) == true && this.getWallLayerTile(pos) == undefined){
+            return true;
+        }
+        return false;
+    }
+
+    canPick(pos){
+        if(this.gumLayer.contains(pos) == true && this.getDotLayerTile(pos) != undefined){
+            return true;
+        }
+        return false;
+    }
+    
+    pick(pos){
+        if(this.getDotLayerTile(pos) == undefined){
+            throw 'erreur';
+        }
+        return this.getDotLayerTile(pos);
+    }
 }
