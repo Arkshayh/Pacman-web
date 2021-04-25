@@ -35,4 +35,16 @@ class GameView{
     
     this.gameview = game;
     }
+
+    getGame(){
+        return this.gameview;
+    }
+
+    updateFrame(){
+        let pac = this.gameview.getPacman();
+        let pacPos = pac.getPosition();
+        let top = (15*(pacPos.getRow()));
+        let left = (15*(pacPos.getColumn()));
+        $('#gameboard').append('<div class = "pacou" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+    }
 }
