@@ -1,7 +1,7 @@
 class Game{
     constructor(rawMaze){
         this.game = rawMaze;
-        this.pac = new PacmanCtrl("pacman", new Position(rawMaze.getPacmanSpawn().getRow(), rawMaze.getPacmanSpawn().getColumn()), Direction.WEST);
+        this.pac = new Pacman("pacman", new Position(rawMaze.getPacmanSpawn().getRow(), rawMaze.getPacmanSpawn().getColumn()), Direction.WEST);
     }
 
     getLabyrinthe(){

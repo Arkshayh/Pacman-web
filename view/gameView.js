@@ -34,10 +34,11 @@ class GameView{
     }
     
     this.gameview = game;
+    this.pacman = game.getPacman();
     }
 
-    getGame(){
-        return this.gameview;
+    test(){
+        this.gameview.moveSprites();
     }
 
     updateFrame(){
