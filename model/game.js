@@ -39,13 +39,19 @@ class Game{
     }
 
     moveSprites(){
-        if(this.getLabyrinthe().canWalkOn(this.getPacman().getPosition().nextPosition(this.getPacman().getDirection())) == true){
+        let pacPos = this.getPacman().getPosition();
+        let nextPos = pacPos.nextPosition(this.getPacman().getDirection());
+
+        /**
+         * console.log("Direction : " + this.getPacman().getDirection().getDeltarow() + ", " + this.getPacman().getDirection().getDeltaColumn());
+         * console.log("current pos = " + pacPos.getRow() + ", " + pacPos.getColumn());
+         * console.log("next pos = " + nextPos.getRow() + ", " + nextPos.getColumn());
+         */
+
+        if(this.getLabyrinthe().canWalkOn(nextPos) == true){
             this.getPacman().move();
-            console.log(this.ghosts)
             for(let i = 0; i < this.ghosts.length; i++){
                 this.ghosts[i].move();
-                console.log("ghost bouge")
-                console.log(this.ghosts[i]);
                 if(this.ghosts[i].canEat(this.getPacman()) == true){
                     console.log("Niark !! Niark !! je bouffe pacman !! Niark !! Niark !!");
                 }

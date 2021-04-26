@@ -9,6 +9,14 @@ class Sprite extends Component{
         this.isDead = false;
     }
 
+    hasBeenEaten(){
+        this.isDead = true;
+    }
+
+    respawn(){
+        this.isDead = false;
+    }
+
     getPosition(){
         return this.position;
     }
@@ -19,6 +27,14 @@ class Sprite extends Component{
 
     getAskedDirection(){
         return this.askedDirection;
+    }
+
+    futurPos(){
+        let dir = this.getAskedDirection();
+        let pos = this.getPosition();
+        let futurPos = pos.nextPosition(dir);
+
+        return futurPos;
     }
 
     hasAskedToChangeDirection(){

@@ -4,6 +4,7 @@ class PacmanCtrl{
     }
 
     askToChangeDirection(direction){
+        //console.log(direction)
         this.Pacman.askToChangeDirection(direction);
     }
 }
