@@ -44,8 +44,16 @@ class GameView{
     updateFrame(){
         let pac = this.gameview.getPacman();
         let pacPos = pac.getPosition();
+
+        let anciennepos = pac.getAnciennePosition();
+
         let top = (15*(pacPos.getRow()));
         let left = (15*(pacPos.getColumn()));
+
+        let oldTop = (15*(anciennepos.getRow()));
+        let oldLeft = (15*(anciennepos.getColumn()));
+
         $('#gameboard').append('<div class = "pacou" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+        $('#gameboard').append('<div class = "empty" style ="left:' +  oldLeft + 'px; top:'+ oldTop + 'px"></div>');
     }
 }

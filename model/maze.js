@@ -49,6 +49,7 @@ class Maze{
         let wall = new Layer(RawMaze.length, RawMaze[0].length);
         let gum = new Layer(RawMaze.length, RawMaze[0].length);
         let pacSpawn;
+        let _ghostSpawn = [];
 
         for(let ligne = 0; ligne < RawMaze.length; ligne++){
             for(let colonne = 0; colonne < RawMaze[0].length; colonne++){
@@ -68,6 +69,7 @@ class Maze{
                         pacSpawn = new Position(ligne, colonne);
                         break; 
                     case 5:
+                        _ghostSpawn.push(new Position(ligne, colonne));
                         break;
                 }
             }
@@ -75,6 +77,11 @@ class Maze{
         this.wallLayer = wall;
         this.gumLayer = gum;     
         this.pacmanSpawn = pacSpawn;
+        this.ghostSpawn = _ghostSpawn;
+    }
+    
+    getGhostSpawn(){
+        return this.ghostSpawn;
     }
 
     getPacmanSpawn(){

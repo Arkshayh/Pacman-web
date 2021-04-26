@@ -5,6 +5,8 @@ class Sprite extends Component{
         this.direction = dir;
         this.askedToChangeDirection = false;
         this.askedDirection = undefined;
+        this.anciennePosition = pos;
+        this.isDead = false;
     }
 
     getPosition(){
@@ -23,9 +25,14 @@ class Sprite extends Component{
         return this.askedToChangeDirection;
     }
 
+    getAnciennePosition(){
+        return this.anciennePosition;
+    }
+
     move(){
         let dir = this.getDirection();
         let pos = this.getPosition();
+        this.anciennePosition = pos;
         this.position  = pos.nextPosition(dir);
     }
 

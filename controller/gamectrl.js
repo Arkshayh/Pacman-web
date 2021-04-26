@@ -11,7 +11,6 @@ class Gamectrl{
         }
         , 300);
     }
-
 }
 
 $(document).ready(function () {
