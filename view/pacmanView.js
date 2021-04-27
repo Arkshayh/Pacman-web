@@ -3,6 +3,7 @@ class PacmanView{
         this.pacmanCtrl = _pacmanCtrl;
     }   
 
+    //getter
     getPacCtrl(){
         return this.pacmanCtrl;
     }

@@ -1,3 +1,8 @@
+/**
+ * The Game class will serve as a front for us.
+ * Game has a rawMaze argument which allows initialization of the game's Maze.
+ * Game create automatically a pacman and 4 ghosts
+ */
 class Game{
     constructor(rawMaze){
         this.game = rawMaze;
@@ -7,6 +12,10 @@ class Game{
         
     }
 
+    /**
+     * Create a array of 4 ghosts
+     * @returns ghosts[4]
+     */
     makeGhost(){
         let tab = [];
         for(let i = 0; i < 4;i++){
@@ -16,6 +25,10 @@ class Game{
         return tab;
     }
 
+    /**
+     * Return a random direction
+     * @returns Direction
+     */
     makeRandomDir(){
         let random = Math.floor(Math.random() * 4) + 1;
         switch(random){
@@ -30,14 +43,21 @@ class Game{
         }
     }
 
+    //getter for this.game (the rawmaze)
     getLabyrinthe(){
         return this.game;
     }
 
+    //getter for pacman
     getPacman(){
         return this.pac;
     }
 
+    /**
+     * This method will move the Pacman. 
+     * Special case: If a change of direction has been requested and it is possible to go in the desired direction,
+     *  then this change of direction must be made before moving the Pacman.
+     */
     moveSprites(){
         let pacPos = this.getPacman().getPosition();
         let nextPos = pacPos.nextPosition(this.getPacman().getDirection());

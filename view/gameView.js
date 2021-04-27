@@ -1,3 +1,6 @@
+/**
+ * GameView will centralize the display of each component of our game; the tiles, Pacman and the ghosts
+ */
 class GameView{
     constructor(game){
     
@@ -38,10 +41,12 @@ class GameView{
     this.pacman = game.getPacman();
     }
 
+    //Call movesSprites()
     test(){
         this.gameview.moveSprites();
     }
 
+    //refresh the game
     updateFrame(){
         let pac = this.gameview.getPacman();
         let pacPos = pac.getPosition();

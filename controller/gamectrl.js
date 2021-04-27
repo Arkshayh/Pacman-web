@@ -1,9 +1,16 @@
+/**
+ * It does not receive anything as a parameter. Its role is to automate the creation of the game and the associated visual
+ */
+
 class Gamectrl{
     constructor(){
         this.gameview = new GameView(new Game(new Maze(RAW_MAZE.table)));
         this.pacmanview = new PacmanView(new PacmanCtrl(this.gameview.pacman));
     }
 
+    /**
+     * This function must call the functions moveSprites () of Game and updateFrame () of GameView at regular intervals of 0.3 seconds.
+     */
     run() {
         this._timer = setInterval(() => {
             this.gameview.test();
@@ -12,6 +19,10 @@ class Gamectrl{
         , 300);
     }
 
+    /**
+     * return true if pacman can change his direction if not ->  false
+     * @returns boolean
+     */
     canChangeDirection(){
         let futurPos = this.pacmanview.pacmanCtrl.Pacman.futurPos();
 
@@ -21,6 +32,9 @@ class Gamectrl{
     }
 }
 
+/**
+ * Code excecute when the page (home.html) is load.
+ */
 $(document).ready(function () {
     jeu = new Gamectrl();
     document.addEventListener("keydown", function (event) {

@@ -1,13 +1,19 @@
+/**
+ * represents a position.
+ * Has 2 coordinate attributes of row and column
+ */
 class Position {
     constructor(row, column){
         this.row = row;
         this.column = column;
     }
 
+    //getter
     getRow(){
         return this.row;
     }
 
+    //getter
     getColumn(){
         return this.column;
     }

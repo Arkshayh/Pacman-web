@@ -1,3 +1,7 @@
+/**
+ * Useless, has to be removed
+ */
+
 function buildBoard() {
     let left = 0;
     let top = 0;

@@ -1,5 +1,5 @@
 /**
- *The powerful, the pleasurable, the indestructible Pacman.
+ *Pacman, he has a ID, a direction and a position.
  */
 class Pacman extends Sprite{
     /**

@@ -44,6 +44,13 @@ const RAW_MAZE = {
     ],
 }
 
+/**
+ * The class makes it possible to model the labyrinth of the Game. 
+ * For its good functioning, two layers (Layer) will be used. 
+ * The layer made up of the tiles with which the collisions will be managed (the walls) and
+ *  the layer with which the Pacman will be able to recover objects (the erasers).
+ * 
+ */
 class Maze{
     constructor(RawMaze){
         let wall = new Layer(RawMaze.length, RawMaze[0].length);
@@ -80,14 +87,22 @@ class Maze{
         this.ghostSpawn = _ghostSpawn;
     }
     
+    /**
+     * return the position of the ghost spawn
+     */
     getGhostSpawn(){
         return this.ghostSpawn;
     }
 
+    /**
+     * the position of the pac spawn
+     * @returns position
+     */
     getPacmanSpawn(){
         return this.pacmanSpawn;
     }
 
+    //getter for a tile of wall layer at the given position
     getWallLayerTile(position){
         if(this.wallLayer.contains(position) == false){
             throw 'error position';
@@ -95,6 +110,7 @@ class Maze{
         return this.wallLayer.getTile(position);
     }
 
+    //getter for a tile of dot layer at the given position
     getDotLayerTile(position){
         if(this.gumLayer.contains(position) == false){
             throw 'error position';
@@ -102,13 +118,21 @@ class Maze{
         return this.gumLayer.getTile(position);
     }
 
+    //getter return the nb of row of the two layer
     getLayerRowSize(){
         return this.wallLayer.getNbRows();
     }
+
+    //getter return the nb of column of the two layer
     getLayerColumnSize(){
         return this.wallLayer.getNbColumns();
     }
 
+    /**
+     * Return true if you can walk on the given positino
+     * @param {*} pos 
+     * @returns boolean
+     */
     canWalkOn(pos){
         if(this.wallLayer.contains(pos) == true && this.getWallLayerTile(pos) == undefined){
             return true;
@@ -116,6 +140,11 @@ class Maze{
         return false;
     }
 
+    /**
+     * Return if you can pick a dot at the given position.
+     * @param {*} pos 
+     * @returns 
+     */
     canPick(pos){
         if(this.gumLayer.contains(pos) == true && this.getDotLayerTile(pos) != undefined){
             return true;
@@ -123,6 +152,11 @@ class Maze{
         return false;
     }
     
+    /**
+     * return the dot at the given position.
+     * @param {} pos 
+     * @returns 
+     */
     pick(pos){
         if(this.getDotLayerTile(pos) == undefined){
             throw 'erreur';
