@@ -71,12 +71,20 @@ class Game{
         if(this.getLabyrinthe().canWalkOn(nextPos) == true){
             this.getPacman().move();
             for(let i = 0; i < this.ghosts.length; i++){
-                this.ghosts[i].move();
-                if(this.ghosts[i].canEat(this.getPacman()) == true){
+                if(this.getLabyrinthe().canWalkOn(this.ghosts[i].futurPos()) == true){
+                    this.ghosts[i].move();
+                }
+                else{
+                    this.ghosts[i].notifyIsBlocked();
+                }
+                if(this.ghosts[i].canEat(this.pac) == true){
                     console.log("Niark !! Niark !! je bouffe pacman !! Niark !! Niark !!");
                 }
             }
         }
     }
 
+    choiceDirGhost(i){
+        this.ghosts[i].choiceNewDirection();
+    }
 }

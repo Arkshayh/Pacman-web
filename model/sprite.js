@@ -13,7 +13,7 @@ class Sprite extends Component{
     }
 
     /**
-     * ggtter for isDead
+     * getter for isDead
      */
     hasBeenEaten(){
         this.isDead = true;

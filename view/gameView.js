@@ -16,19 +16,19 @@ class GameView{
             else if(labyrinthe.getDotLayerTile(new Position(ligne, colonne)) != undefined ){
                 switch(labyrinthe.getDotLayerTile(new Position(ligne, colonne)).id) {
                     case 2:
-                        $('#gameboard').append('<div class = "pacdot" id ="' + idDiv + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+                        $('#gameboard').append('<div class = "pacdot" id ="case-'+ ligne + '-' + colonne + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
                         break;
                     case 3: 
-                        $('#gameboard').append('<div class = "energizer" id ="' + idDiv + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+                        $('#gameboard').append('<div class = "energizer" id ="case-'+ ligne + '-' + colonne + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
                         break;
                     default:
-                        $('#gameboard').append('<div class = "empty" id ="' + idDiv + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+                        $('#gameboard').append('<div class = "empty" id ="case-'+ ligne + '-' + colonne + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
                         break;
 
                 }
             }
             else{
-                $('#gameboard').append('<div class = "empty" id ="' + idDiv + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+                $('#gameboard').append('<div class = "empty" id ="case-'+ ligne + '-' + colonne + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
             }
             left = left + 15; 
             idDiv++;  
@@ -39,6 +39,15 @@ class GameView{
     
     this.gameview = game;
     this.pacman = game.getPacman();
+    this.oldClass = [       ];
+    }
+
+    setOldClass(i, classe){
+        this.oldClass[i] = classe;
+    }
+
+    getOldClasse(i){
+        return this.oldClass[i];
     }
 
     //Call movesSprites()
@@ -59,7 +68,35 @@ class GameView{
         let oldTop = (15*(anciennepos.getRow()));
         let oldLeft = (15*(anciennepos.getColumn()));
 
-        $('#gameboard').append('<div class = "pacou" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
-        $('#gameboard').append('<div class = "empty" style ="left:' +  oldLeft + 'px; top:'+ oldTop + 'px"></div>');
+        $('#case-'+top/15+'-'+left/15+'').attr("class","pacou");
+        $('#case-'+oldTop/15+'-'+oldLeft/15+'').attr("class","empty");
+
+        let ghostPos;
+        let OldghostPos;
+
+        let oldclasss;
+        let currentClass;
+
+        for(let i = 0; i < this.gameview.ghosts.length; i++){
+            ghostPos = this.gameview.ghosts[i].getPosition();
+            OldghostPos = this.gameview.ghosts[i].getAnciennePosition();
+
+            top = (15*(ghostPos.getRow()));
+            left = (15*(ghostPos.getColumn()));
+
+            oldTop = (15*(OldghostPos.getRow()));
+            oldLeft = (15*(OldghostPos.getColumn()));
+
+            oldclasss = this.getOldClasse(i);
+            currentClass = $('#case-'+top/15+'-'+left/15+'').attr("class");
+
+            $('#case-'+top/15+'-'+left/15+'').attr("class","ghost");
+
+            this.setOldClass(i, currentClass);
+
+            $('#case-'+oldTop/15+'-'+oldLeft/15+'').attr("class", oldclasss);
+        }
+
+
     }
 }

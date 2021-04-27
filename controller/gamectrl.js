@@ -17,6 +17,12 @@ class Gamectrl{
             this.gameview.updateFrame();
         }
         , 300);
+        this._timer2 = setInterval(() => {
+            for(let i = 0 ; i < 4; i++){
+                this.gameview.gameview.choiceDirGhost(i);
+            }
+        }
+        , 4000);
     }
 
     /**

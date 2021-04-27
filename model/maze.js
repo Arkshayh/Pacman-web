@@ -154,6 +154,7 @@ class Maze{
     
     /**
      * return the dot at the given position.
+     * 
      * @param {} pos 
      * @returns 
      */

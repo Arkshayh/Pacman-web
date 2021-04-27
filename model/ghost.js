@@ -12,31 +12,25 @@ class Ghost extends Sprite{
      * @returns Direction
      */
     choiceNewDirection(){
-        let random;
-        this._timer = setInterval(() => {
-            random = Math.floor(Math.random() * 4) + 1;
-
-            switch(random){
-                case 1:
-                    this.askToChangeDirection(Direction.NORTH);
-                    this.changeDirection();
-                    break;
-                case 2:
-                    this.askToChangeDirection(Direction.SOUTH);
-                    this.changeDirection();
-                    break;
-                case 3:
-                    this.askToChangeDirection(Direction.WEST);
-                    this.changeDirection();
-                    break;
-                default:
-                    this.askToChangeDirection(Direction.EAST);
-                    this.changeDirection();
-                    break;
-            }
+        let random = Math.floor(Math.random() * 4) + 1;;
+        switch(random){
+            case 1:
+                this.askToChangeDirection(Direction.NORTH);
+                this.changeDirection();
+                break;
+            case 2:
+                this.askToChangeDirection(Direction.SOUTH);
+                this.changeDirection();
+                break;
+            case 3:
+                this.askToChangeDirection(Direction.WEST);
+                this.changeDirection();
+                break;
+            default:
+                this.askToChangeDirection(Direction.EAST);
+                this.changeDirection();
+                break;
         }
-        , 300);
-
     }
 
 
@@ -54,13 +48,8 @@ class Ghost extends Sprite{
      * check if the ghost is blocked, if it's the case he choose a new direction
      * @param {} maze 
      */
-    notifyIsBlocked(maze){
-        let CurrentPos = this.getPosition();
-        let CurrentDir = this.getDirection();
-        let futurePos = new Position(CurrentPos.getRow() + CurrentDir.getDeltaRow(), CurrentPos.getColumn() + CurrentDir.getDeltaColumn);
-        if(maze.canWalkOn(futurePos)== true){
-            this.choiceNewDirection();
-        }
+    notifyIsBlocked(){
+        this.choiceNewDirection();
     }
 
 }
