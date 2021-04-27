@@ -4,7 +4,7 @@ class GameView{
     let labyrinthe = game.getLabyrinthe();
     let left = 0;
     let top = 0;
-
+    let idDiv = 1;
     for(let ligne = 0; ligne < labyrinthe.getLayerRowSize(); ligne++){
         for(let colonne = 0; colonne < labyrinthe.getLayerColumnSize(); colonne++){
             if(labyrinthe.getWallLayerTile(new Position(ligne, colonne)) != undefined){
@@ -13,21 +13,22 @@ class GameView{
             else if(labyrinthe.getDotLayerTile(new Position(ligne, colonne)) != undefined ){
                 switch(labyrinthe.getDotLayerTile(new Position(ligne, colonne)).id) {
                     case 2:
-                        $('#gameboard').append('<div class = "pacdot" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+                        $('#gameboard').append('<div class = "pacdot" id ="' + idDiv + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
                         break;
                     case 3: 
-                        $('#gameboard').append('<div class = "energizer" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+                        $('#gameboard').append('<div class = "energizer" id ="' + idDiv + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
                         break;
                     default:
-                        $('#gameboard').append('<div class = "empty" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+                        $('#gameboard').append('<div class = "empty" id ="' + idDiv + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
                         break;
 
                 }
             }
             else{
-                $('#gameboard').append('<div class = "empty" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+                $('#gameboard').append('<div class = "empty" id ="' + idDiv + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
             }
-            left = left + 15;   
+            left = left + 15; 
+            idDiv++;  
         }
         left = 0;
         top = top + 15;

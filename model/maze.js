@@ -50,7 +50,7 @@ class Maze{
         let gum = new Layer(RawMaze.length, RawMaze[0].length);
         let pacSpawn;
         let _ghostSpawn;
-
+        
         for(let ligne = 0; ligne < RawMaze.length; ligne++){
             for(let colonne = 0; colonne < RawMaze[0].length; colonne++){
                 switch(RawMaze[ligne][colonne]) {
@@ -60,10 +60,10 @@ class Maze{
                         wall.setTile(new Position(ligne, colonne), new Tile(RawMaze[ligne][colonne]));
                         break;
                     case 2:
-                        gum.setTile(new Position(ligne, colonne), new Tile(RawMaze[ligne][colonne]));
+                        gum.setTile(new Position(ligne, colonne), new Dot(RawMaze[ligne][colonne], false));
                         break;
                     case 3:
-                        gum.setTile(new Position(ligne, colonne), new Tile(RawMaze[ligne][colonne]));
+                        gum.setTile(new Position(ligne, colonne), new Dot(RawMaze[ligne][colonne], true));
                         break;
                     case 4:
                         pacSpawn = new Position(ligne, colonne);
