@@ -20,7 +20,7 @@ class Game{
     makeGhost(){
         let tab = [];
         for(let i = 0; i < 4;i++){
-            tab.push(new Ghost("ghost", new Position(this.game.getGhostSpawn().getRow(), this.game.getGhostSpawn().getColumn()), this.makeRandomDir()))
+            tab.push(new Ghost("empty", new Position(this.game.getGhostSpawn().getRow(), this.game.getGhostSpawn().getColumn()), this.makeRandomDir()))
             tab[i].choiceNewDirection();
         }
         return tab;

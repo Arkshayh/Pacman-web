@@ -41,16 +41,8 @@ class GameView{
 
     this.gameview = game;
     this.pacman = game.getPacman();
-    this.oldClass = [];
     }
 
-    setOldClass(i, classe){
-        this.oldClass[i] = classe;
-    }
-
-    getOldClasse(i){
-        return this.oldClass[i];
-    }
 
     displayGameOver(){
         console.log("GG, ton score vaut " + this.gameview.getScore());
@@ -90,7 +82,6 @@ class GameView{
         let ghostPos;
         let OldghostPos;
 
-        let oldclasss;
         let currentClass;
 
         for(let i = 0; i < this.gameview.ghosts.length; i++){
@@ -103,17 +94,13 @@ class GameView{
             oldTop = (15*(OldghostPos.getRow()));
             oldLeft = (15*(OldghostPos.getColumn()));
 
-            oldclasss = this.getOldClasse(i);
+            $('#case-'+oldTop/15+'-'+oldLeft/15+'').attr("class", this.gameview.ghosts[i].getId());
+
             currentClass = $('#case-'+top/15+'-'+left/15+'').attr("class");
+            this.gameview.ghosts[i].setId(currentClass)
 
             $('#case-'+top/15+'-'+left/15+'').attr("class","ghost");
-
-            this.setOldClass(i, currentClass);
-
-            $('#case-'+oldTop/15+'-'+oldLeft/15+'').attr("class", oldclasss);
         }
-
-
     }
 
     updateLives(){

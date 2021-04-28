@@ -11,4 +11,8 @@ class Component{
         return this._id;
         
     }
+    //Setter 
+    setId(id){
+        this._id = id;
+    }
 }
