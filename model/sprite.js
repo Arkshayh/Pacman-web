@@ -13,8 +13,21 @@ class Sprite extends Component{
     }
 
     /**
+     * Setter
+     */
+    setPosition(pos){
+        this.position = pos;
+    }
+
+
+    /**
      * getter for isDead
      */
+
+    isSpriteDead(){
+        return this.isDead;
+    }
+    
     hasBeenEaten(){
         this.isDead = true;
     }
@@ -77,6 +90,11 @@ class Sprite extends Component{
     //change the direction -> askedtochangedirection -> false
     changeDirection(){
         this.direction = this.getAskedDirection();
+        this.askedToChangeDirection = false;
+    }
+
+    changeDirectionRespawn(dir){
+        this.direction = dir;
         this.askedToChangeDirection = false;
     }
 }

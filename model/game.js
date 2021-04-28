@@ -78,6 +78,7 @@ class Game{
                     this.ghosts[i].notifyIsBlocked();
                 }
                 if(this.ghosts[i].canEat(this.pac) == true){
+                    this.game.respawnAllSprite();
                     console.log("Niark !! Niark !! je bouffe pacman !! Niark !! Niark !!");
                 }
             }
@@ -86,5 +87,28 @@ class Game{
 
     choiceDirGhost(i){
         this.ghosts[i].choiceNewDirection();
+    }
+
+    pacmanHasBeenEaten(){
+        return this.pac.isSpriteDead();
+    }
+
+    isGameOver(){
+        if(this.pac.getLives() == 0 && this.pacmanHasBeenEaten() == true){
+            return true;
+        }
+        return false;
+    }
+
+    respawnAllSprite(){
+        this.pac.changeDirectionRespawn(Direction.WEST);
+        this.pac.setPosition(this.game.getPacmanSpawn().getRow(), this.game.getPacmanSpawn().getColumn());
+        this.pac.respawn();
+
+        for(let i =0; i < this.ghosts.length; i++){
+            this.ghosts[i].changeDirectionRespawn(this.makeRandomDir());
+            this.ghosts[i].setPosition(this.game.getGhostSpawn().getRow(), this.game.getGhostSpawn().getColumn());
+            this.ghosts[i].respawn();
+        }
     }
 }

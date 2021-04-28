@@ -15,6 +15,7 @@ class Gamectrl{
         this._timer = setInterval(() => {
             this.gameview.test();
             this.gameview.updateFrame();
+            this.gameview.updateLives();
         }
         , 300);
         this._timer2 = setInterval(() => {

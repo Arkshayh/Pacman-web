@@ -99,4 +99,8 @@ class GameView{
 
 
     }
+
+    updateLives(){
+        $('#gamefooter').text("Vies restantes : " + this.pacman.getLives());
+    }
 }
