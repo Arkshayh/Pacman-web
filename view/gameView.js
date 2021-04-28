@@ -36,10 +36,12 @@ class GameView{
         left = 0;
         top = top + 15;
     }
-    
+    let hscore = localStorage.getItem('HighScore');
+    $("#hscore").text(hscore);
+
     this.gameview = game;
     this.pacman = game.getPacman();
-    this.oldClass = [       ];
+    this.oldClass = [];
     }
 
     setOldClass(i, classe){
@@ -48,6 +50,10 @@ class GameView{
 
     getOldClasse(i){
         return this.oldClass[i];
+    }
+
+    displayGameOver(){
+        console.log("GG, ton score vaut " + this.gameview.getScore());
     }
 
     //Call movesSprites()

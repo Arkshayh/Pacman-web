@@ -10,6 +10,7 @@ class Game{
         this.ghosts = this.makeGhost();
         this.score = 0; 
         this.removeDot;
+        this.highScore = localStorage.getItem('HighScore');
     }
 
     /**
@@ -43,6 +44,11 @@ class Game{
         }
     }
 
+    //getter for highscore
+    getHighScore(){
+        return this.highScore;
+    }
+
     //getter for score
     getScore(){
         return this.score;
@@ -56,6 +62,10 @@ class Game{
     //getter for pacman
     getPacman(){
         return this.pac;
+    }
+
+    saveScore(){
+        localStorage.setItem("HighScore", this.getScore()); 
     }
 
     /**
@@ -83,7 +93,9 @@ class Game{
             else if(theclass == "energizer"){
                 this.score = this.getScore() + 10;
             }
-            
+            if(this.getScore() > this.getHighScore()){
+                this.saveScore();
+            }
             for(let i = 0; i < this.ghosts.length; i++){
                 if(this.getLabyrinthe().canWalkOn(this.ghosts[i].futurPos()) == true){
                     this.ghosts[i].move();
