@@ -7,9 +7,9 @@ class Game{
     constructor(rawMaze){
         this.game = rawMaze;
         this.pac = new Pacman("pacman", new Position(rawMaze.getPacmanSpawn().getRow(), rawMaze.getPacmanSpawn().getColumn()), Direction.WEST);
-
         this.ghosts = this.makeGhost();
-        
+        this.score = 0; 
+        this.removeDot;
     }
 
     /**
@@ -43,6 +43,11 @@ class Game{
         }
     }
 
+    //getter for score
+    getScore(){
+        return this.score;
+    }
+
     //getter for this.game (the rawmaze)
     getLabyrinthe(){
         return this.game;
@@ -61,7 +66,9 @@ class Game{
     moveSprites(){
         let pacPos = this.getPacman().getPosition();
         let nextPos = pacPos.nextPosition(this.getPacman().getDirection());
-
+        let top = (15*(nextPos.getRow()));
+        let left = (15*(nextPos.getColumn()));
+        let theclass = $('#case-'+top/15+'-'+left/15+'').attr("class");
         /**
          * console.log("Direction : " + this.getPacman().getDirection().getDeltarow() + ", " + this.getPacman().getDirection().getDeltaColumn());
          * console.log("current pos = " + pacPos.getRow() + ", " + pacPos.getColumn());
@@ -70,6 +77,13 @@ class Game{
 
         if(this.getLabyrinthe().canWalkOn(nextPos) == true){
             this.getPacman().move();
+            if(theclass == "pacdot"){
+                this.score = this.getScore() + 10;
+            }
+            else if(theclass == "energizer"){
+                this.score = this.getScore() + 10;
+            }
+            
             for(let i = 0; i < this.ghosts.length; i++){
                 if(this.getLabyrinthe().canWalkOn(this.ghosts[i].futurPos()) == true){
                     this.ghosts[i].move();

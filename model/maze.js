@@ -57,7 +57,8 @@ class Maze{
         let gum = new Layer(RawMaze.length, RawMaze[0].length);
         let pacSpawn;
         let _ghostSpawn;
-        
+        let nbGum;
+
         for(let ligne = 0; ligne < RawMaze.length; ligne++){
             for(let colonne = 0; colonne < RawMaze[0].length; colonne++){
                 switch(RawMaze[ligne][colonne]) {
@@ -67,9 +68,11 @@ class Maze{
                         wall.setTile(new Position(ligne, colonne), new Tile(RawMaze[ligne][colonne]));
                         break;
                     case 2:
+                        nbGum++;
                         gum.setTile(new Position(ligne, colonne), new Dot(RawMaze[ligne][colonne], false));
                         break;
                     case 3:
+                        nbGum++;
                         gum.setTile(new Position(ligne, colonne), new Dot(RawMaze[ligne][colonne], true));
                         break;
                     case 4:
@@ -85,6 +88,7 @@ class Maze{
         this.gumLayer = gum;     
         this.pacmanSpawn = pacSpawn;
         this.ghostSpawn = _ghostSpawn;
+        this.nbgum = nbGum;
     }
     
     /**
@@ -128,6 +132,11 @@ class Maze{
         return this.wallLayer.getNbColumns();
     }
 
+    //Getter for the number of gums on the board
+    getNbGum(){
+        return this.nbgum;
+    }
+
     /**
      * Return true if you can walk on the given positino
      * @param {*} pos 
@@ -152,6 +161,7 @@ class Maze{
         return false;
     }
     
+
     /**
      * return the dot at the given position.
      * 
@@ -162,7 +172,21 @@ class Maze{
         if(this.getDotLayerTile(pos) == undefined){
             throw 'erreur';
         }
+        this.wallLayer[pos.getRow()][pos.getColumn()] = undefined;
+        this.nbgum = this.getNbGum() - 1;
         return this.getDotLayerTile(pos);
     }
-   
+    
+    /**
+     * Check if the board is empty (no gum), 
+     * if yes -> true 
+     * else -> false
+     * @returns boolean
+     */
+    isEmpty(){
+        if(this.nbgum == 0){
+            return true;
+        }
+        return false;
+    }
 }

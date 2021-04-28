@@ -70,6 +70,8 @@ class GameView{
 
         $('#case-'+top/15+'-'+left/15+'').attr("class","pacou");
         $('#case-'+oldTop/15+'-'+oldLeft/15+'').attr("class","empty");
+        
+        $('#currentScore').text("Score actuel : " + this.gameview.getScore());
 
         let ghostPos;
         let OldghostPos;
