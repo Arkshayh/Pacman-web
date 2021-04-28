@@ -63,6 +63,14 @@ class GameView{
 
     //refresh the game
     updateFrame(){
+        if(this.gameview.game.isEmpty() == true || this.gameview.isGameOver() == true){
+            this.displayGameOver();
+            //I do not call saveScore here. I call it in game.move(), when pac eat a dot, the current score is compared to the highscore 
+            //and if the score > highscore -> saveScore() is called 
+            //In my opinion it's better to do that UmU
+            
+        }
+
         let pac = this.gameview.getPacman();
         let pacPos = pac.getPosition();
 
