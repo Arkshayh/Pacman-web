@@ -18,7 +18,7 @@ class Direction{
     }
 }
 
-//4 direction possible.
+//4 directions possible.
 Direction.NORTH = new Direction(-1,0);
 Direction.SOUTH = new Direction(1,0);
 Direction.WEST = new Direction(0,-1);
