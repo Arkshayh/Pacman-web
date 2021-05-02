@@ -24,6 +24,11 @@ class Gamectrl{
             }
         }
         , 4000);
+
+        if(this.gameview.gameview.lvlSucced() == true){
+            this.gameview.gameview.nextLevel(RAW_MAZE.table); 
+            this.gameview.nextLevel();
+        }
     }
 
     /**

@@ -7,7 +7,6 @@ class GameView{
     let labyrinthe = game.getLabyrinthe();
     let left = 0;
     let top = 0;
-    let idDiv = 1;
     for(let ligne = 0; ligne < labyrinthe.getLayerRowSize(); ligne++){
         for(let colonne = 0; colonne < labyrinthe.getLayerColumnSize(); colonne++){
             if(labyrinthe.getWallLayerTile(new Position(ligne, colonne)) != undefined){
@@ -106,4 +105,39 @@ class GameView{
     updateLives(){
         $('#gamefooter').text("Vies restantes : " + this.pacman.getLives());
     }
+
+    nextLevel(){
+        $("#gameboard").children().remove();
+        let lab = this.gameview.getLabyrinthe();
+        for(let ligne = 0; ligne < lab.getLayerRowSize(); ligne++){
+            for(let colonne = 0; colonne < lab.getLayerColumnSize(); colonne++){
+                if(lab.getWallLayerTile(new Position(ligne, colonne)) != undefined){
+                    $('#gameboard').append('<div class = "wall" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+                }
+                else if(lab.getDotLayerTile(new Position(ligne, colonne)) != undefined ){
+                    switch(lab.getDotLayerTile(new Position(ligne, colonne)).id) {
+                        case 2:
+                            $('#gameboard').append('<div class = "pacdot" id ="case-'+ ligne + '-' + colonne + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+                            break;
+                        case 3: 
+                            $('#gameboard').append('<div class = "energizer" id ="case-'+ ligne + '-' + colonne + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+                            break;
+                        default:
+                            $('#gameboard').append('<div class = "empty" id ="case-'+ ligne + '-' + colonne + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+                            break;
+    
+                    }
+                }
+                else{
+                    $('#gameboard').append('<div class = "empty" id ="case-'+ ligne + '-' + colonne + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
+                }
+                left = left + 15; 
+                idDiv++;  
+            }
+            left = 0;
+            top = top + 15;
+        }
+    }
+    
+    updateFrame();
 }

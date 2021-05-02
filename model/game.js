@@ -104,7 +104,7 @@ class Game{
                     this.ghosts[i].notifyIsBlocked();
                 }
                 if(this.ghosts[i].canEat(this.pac) == true){
-                    this.game.respawnAllSprite();
+                    this.respawnAllSprite();
                     console.log("Niark !! Niark !! je bouffe pacman !! Niark !! Niark !!");
                 }
             }
@@ -118,7 +118,7 @@ class Game{
     pacmanHasBeenEaten(){
         return this.pac.isSpriteDead();
     }
-
+    
     isGameOver(){
         if(this.pac.getLives() == 0 && this.pacmanHasBeenEaten() == true){
             return true;
@@ -136,5 +136,21 @@ class Game{
             this.ghosts[i].setPosition(this.game.getGhostSpawn().getRow(), this.game.getGhostSpawn().getColumn());
             this.ghosts[i].respawn();
         }
+    }
+
+    /**
+     * Used to find out if the current level has ended if yes -> true else -> false.
+     * @returns boolean
+     */
+    lvlSucced(){
+        if(this.game.isEmpty() == true){
+            return true;
+        }
+        return false;
+    }
+
+    nextLevel(maze){
+        this.game = new Maze(maze);
+        this.respawnAllSprite();
     }
 }
