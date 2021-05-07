@@ -63,7 +63,7 @@ class Gamectrl{
      * Stop the pause, pacman and the ghost can move again 
      */
     stopPause(){
-        console.log("pause")
+        console.log("stop pause")
         this.pause = false;
         this.run();
     }
