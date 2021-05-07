@@ -49,6 +49,9 @@ class Gamectrl{
         return bool;
     }
 
+    /**
+     * Pause the game, pacman and the ghost will not move anymore
+     */
     pauseGame(){
         console.log("pause")
         clearInterval(this._timer);
@@ -56,6 +59,9 @@ class Gamectrl{
         this.pause = true;
     }
 
+    /**
+     * Stop the pause, pacman and the ghost can move again 
+     */
     stopPause(){
         console.log("pause")
         this.pause = false;
