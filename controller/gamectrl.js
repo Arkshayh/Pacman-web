@@ -6,6 +6,7 @@ class Gamectrl{
     constructor(){
         this.gameview = new GameView(new Game(new Maze(RAW_MAZE.table)));
         this.pacmanview = new PacmanView(new PacmanCtrl(this.gameview.pacman));
+        this.pause = false;
     }
 
     /**
@@ -47,6 +48,19 @@ class Gamectrl{
 
         return bool;
     }
+
+    pauseGame(){
+        console.log("pause")
+        clearInterval(this._timer);
+        clearInterval(this._timer2);
+        this.pause = true;
+    }
+
+    stopPause(){
+        console.log("pause")
+        this.pause = false;
+        this.run();
+    }
 }
 
 /**
@@ -57,7 +71,6 @@ $(document).ready(function () {
     document.addEventListener("keydown", function (event) {
         let touche = event.key;
         if(jeu.pacmanview && jeu.pacmanview instanceof PacmanView){
-            console.log(touche)
             switch(touche){
                 case 'ArrowLeft':
                     console.log("gauche");
@@ -87,6 +100,15 @@ $(document).ready(function () {
                         jeu.pacmanview.pacmanCtrl.Pacman.changeDirection();
                     }
                     break;
+                case 'p':
+                    if(jeu.pause == false){
+                        
+                        jeu.pauseGame();
+                    }
+                    else{
+                        jeu.stopPause();
+                    }
+                    
             }
         }
     })
