@@ -30,7 +30,7 @@ class GameView{
                 $('#gameboard').append('<div class = "empty" id ="case-'+ ligne + '-' + colonne + '" style ="left:' +  left + 'px; top:'+ top + 'px"></div>');
             }
             left = left + 15; 
-            idDiv++;  
+             
         }
         left = 0;
         top = top + 15;
@@ -139,5 +139,4 @@ class GameView{
         }
     }
     
-    updateFrame();
 }

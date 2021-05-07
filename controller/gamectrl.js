@@ -20,7 +20,12 @@ class Gamectrl{
         , 300);
         this._timer2 = setInterval(() => {
             for(let i = 0 ; i < 4; i++){
-                this.gameview.gameview.choiceDirGhost(i);
+                if(i == 3){
+                    this.gameview.gameview.choiceDirSpeGhost(i);
+                }
+                else{
+                    this.gameview.gameview.choiceDirGhost(i);
+                }
             }
         }
         , 4000);
@@ -52,6 +57,7 @@ $(document).ready(function () {
     document.addEventListener("keydown", function (event) {
         let touche = event.key;
         if(jeu.pacmanview && jeu.pacmanview instanceof PacmanView){
+            console.log(touche)
             switch(touche){
                 case 'ArrowLeft':
                     console.log("gauche");
