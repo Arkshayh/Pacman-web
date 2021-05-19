@@ -6,6 +6,7 @@ class Gamectrl{
     constructor(){
         this.gameview = new GameView(new Game(new Maze(RAW_MAZE.table)));
         this.pacmanview = new PacmanView(new PacmanCtrl(this.gameview.pacman));
+        this.pause = false;
     }
 
     /**
@@ -20,7 +21,12 @@ class Gamectrl{
         , 300);
         this._timer2 = setInterval(() => {
             for(let i = 0 ; i < 4; i++){
-                this.gameview.gameview.choiceDirGhost(i);
+                if(i == 3){
+                    this.gameview.gameview.choiceDirSpeGhost(i);
+                }
+                else{
+                    this.gameview.gameview.choiceDirGhost(i);
+                }
             }
         }
         , 4000);
@@ -41,6 +47,25 @@ class Gamectrl{
         let bool =  this.gameview.gameview.game.canWalkOn(futurPos);
 
         return bool;
+    }
+
+    /**
+     * Pause the game, pacman and the ghost will not move anymore
+     */
+    pauseGame(){
+        console.log("pause")
+        clearInterval(this._timer);
+        clearInterval(this._timer2);
+        this.pause = true;
+    }
+
+    /**
+     * Stop the pause, pacman and the ghost can move again 
+     */
+    stopPause(){
+        console.log("stop pause")
+        this.pause = false;
+        this.run();
     }
 }
 
@@ -81,6 +106,15 @@ $(document).ready(function () {
                         jeu.pacmanview.pacmanCtrl.Pacman.changeDirection();
                     }
                     break;
+                case 'p':
+                    if(jeu.pause == false){
+                        
+                        jeu.pauseGame();
+                    }
+                    else{
+                        jeu.stopPause();
+                    }
+                    
             }
         }
     })

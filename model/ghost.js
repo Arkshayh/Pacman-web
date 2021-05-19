@@ -52,4 +52,12 @@ class Ghost extends Sprite{
         this.choiceNewDirection();
     }
 
+    /**
+     * One ghost will have a patern of direction Up down left right.
+     */
+    changeDirectionSpecialGhost(Direction){
+        this.askToChangeDirection(Direction);
+        this.changeDirection();
+    }
+
 }

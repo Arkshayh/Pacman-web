@@ -2,6 +2,8 @@
  * The Game class will serve as a front for us.
  * Game has a rawMaze argument which allows initialization of the game's Maze.
  * Game create automatically a pacman and 4 ghosts
+ * this.specialghostDir is an array who contains the 4 direction in a certain order
+ * this.indexSpecial is useful to browse specialghotDir
  */
 class Game{
     constructor(rawMaze){
@@ -11,6 +13,8 @@ class Game{
         this.score = 0; 
         this.removeDot;
         this.highScore = localStorage.getItem('HighScore');
+        this.specialGhostDir = [Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST];
+        this.indexSpecialDir = 0;
     }
 
     /**
@@ -101,7 +105,13 @@ class Game{
                     this.ghosts[i].move();
                 }
                 else{
-                    this.ghosts[i].notifyIsBlocked();
+                    if(i == this.ghosts.length - 1){
+                        this.choiceDirSpeGhost(i);
+                    }
+                    else{
+                        this.ghosts[i].notifyIsBlocked();
+                    }
+                    
                 }
                 if(this.ghosts[i].canEat(this.pac) == true){
                     this.respawnAllSprite();
@@ -111,8 +121,27 @@ class Game{
         }
     }
 
+    /**
+     * call choiceNewDir who will choice a random direction for the ghosts
+     */
     choiceDirGhost(i){
         this.ghosts[i].choiceNewDirection();
+    }   
+    
+    /**
+     * Choice the direction for the The fourth ghost (or the last ghost of the list)
+     * the choice follow a patern : NORTH SOUTH EAST WEST
+     * @param {*} i | the special ghost position in the array of this.ghost
+     */
+    choiceDirSpeGhost(i){  
+        
+        this.ghosts[i].changeDirectionSpecialGhost(this.specialGhostDir[this.indexSpecialDir]);
+        if(this.indexSpecialDir == this.specialGhostDir.length - 1){
+            this.indexSpecialDir = 0;
+        }
+        else{
+            this.indexSpecialDir++;
+        }
     }
 
     pacmanHasBeenEaten(){
